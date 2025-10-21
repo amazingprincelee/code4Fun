@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+   <style>
+
+          body {
+            padding-top: 80px;
+            display: flex;
+            flex-direction: column;
+          }
+         
+         .friends-container{
+            margin: auto;
+            width: 80%;
+            text-align: center;
+
+         }
+
+         .frieds-photo {
+            width: 200px;
+            height: 250px;
+         }
+
+         .selected-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid rgb(25, 245, 25);
+            padding: 20px;
+         }
+
+         .active {
+            
+            outline: 20px solid rgb(53, 243, 53);
+            border: 5px solid white;
+         }
+
+         .card {
+            display: inline-block;
+            margin: 30px;
+         }
+        
+         .display-container {
+            display: flex;
+            margin: auto;
+            justify-content: center;
+            align-items: center;
+            border: 5px green solid;
+            padding: 20px;
+            width: 50%;
+            border-radius: 20px;
+            position: relative;
+         }
+
+         #count-down {
+            position: absolute;
+            border: 2px solid red;
+            width: 100%;
+            height: 100%;
+            font-size: 42px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            background-color: aliceblue;
+            border-radius: 20px;
+            
+            
+         }
+
+         
+         
+         .message {
+            font-size: 20px;
+            margin-left: 20px;
+            color: green;
+         }
+
+         .title {
+            font-family: 'Lucida Sans', sans-serif;
+            text-align: center;
+            color: orange;
+            margin-bottom: 50px;
+            font-size: 32px;
+         }
+
+         .find-btn {
+            text-align: center;
+            padding: 8px;
+            width: 200px;
+            color: white;
+            font-size: 14px;
+            margin-left: 10px;
+            border-radius: 5px;
+            background: orange;
+            cursor: pointer;
+         }
+
+   </style>
+
+</head>
+<body>
+
+    <p class="title">Who is buying the drink?</p>
+
+    <div class="friends-container">
+        <div class="card">
+            <img class="frieds-photo" src="./friends-photo/emeka.png" alt="emeka">
+            <p>Emeka</p>
+        </div>
+        
+        <div class="card">
+            <img class="frieds-photo" src="./friends-photo/c-boy.png" alt="c-boy">
+            <p>Chyke</p>
+        </div>
+
+        <div class="card">
+            <img class="frieds-photo" src="./friends-photo/stanley.png" alt="stanley">
+             <p>Stanley</p>
+        </div>
+         
+        <div class="card">
+            <img class="frieds-photo" src="./friends-photo/uche.jpg" alt="uche">
+            <p>Uche</p>  
+        </div>
+
+    </div>
+    
+    
+    <div class="display-container">
+
+          
+            <img class="selected-photo" src="./friends-photo/who.png" alt="uche">
+              
+        
+
+        <p class="message">
+            😆 Click the button to find out
+            
+        </p>
+
+        
+
+        <button class="find-btn" onclick="whoIsBuyingDring()">Who Dey Buy Drink Again?</button>
+
+        <p id="count-down">1</p>
+
+    </div>
+
+    
+    <script>
+       
+       function whoIsBuyingDring(){
+
+        document.querySelectorAll(".frieds-photo").forEach(photo => {
+  photo.classList.remove("active");
+});
+
+
+         const photo = [{photo: "uche.jpg", name: "Uche"}, {photo: "stanley.png", name: "Stanley"}, {photo: "emeka.png", name: "Emeka"}, {photo: "c-boy.png", name: "Chyke"}]
+          
+          
+         const randomPhoto = photo[Math.floor(Math.random() * photo.length)] 
+
+         console.log(randomPhoto);
+         
+         
+         let count = 3;
+         
+        const intervalId =  setInterval(()=>{
+          
+           var countDown =  document.getElementById('count-down')
+           countDown.style.display = 'flex';
+           countDown.innerHTML = count
+
+
+            count--
+
+            if(count <= -1){
+                clearInterval(intervalId)
+                const friendsPhoto = document.querySelector(`[src="./friends-photo/${randomPhoto.photo}"]`);
+                const getFriendsPhotoAttr = friendsPhoto.getAttribute("src")
+                console.log("the object", getFriendsPhotoAttr);
+                
+                const selectedFriendPhoto = document.querySelector(".selected-photo");  
+                 selectedFriendPhoto.setAttribute("src", "./friends-photo/" + randomPhoto.photo);
+                 const getSelectedPhoto = selectedFriendPhoto.getAttribute('src')
+                 console.log("selected added", getSelectedPhoto);
+                 console.log("fried photo arr", getFriendsPhotoAttr);
+                 
+                 
+                 if(getSelectedPhoto === getFriendsPhotoAttr){
+                   const result = document.querySelector(`[src="${getFriendsPhotoAttr}"]`)
+                   result.classList.add("active")
+                   
+                 }
+                 document.querySelector(".message").innerHTML = `😆 ${randomPhoto.name} is buying the drink tonight 💃🍺 `;
+                 document.querySelector(".title").innerHTML = `😆 ${randomPhoto.name} is buying the drink tonight 💃🍺 `;
+                 document.getElementById('count-down').style.display = 'none';
+                 count = 0
+
+            }
+
+            
+
+        }, 1000)
+
+
+         
+
+       }
+
+       
+
+    </script>
+
+
+    
+</body>
+</html>

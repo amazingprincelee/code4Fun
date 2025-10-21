@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     
+
+    <style>
+        div {
+            margin: auto;
+            width: 50%;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(253, 104, 129);
+        }
+
+        button {
+            width: 55%;
+
+        }
+
+        section {
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+
+<body>
+    
+    <div>
+       <h1>Guest List 🥳</h1>
+       <label for="name">Enter name</label>
+       <input id="name" type="text">
+       <p></p>
+       <section>
+          <button onclick="onSubmit()">Submit</button>
+       </section>
+    </div>
+
+    <script>
+
+        function onSubmit(){
+            const guestList = ['precious', "john", 'grace', 'peter', 'james']
+          const name =  document.getElementById('name').value;
+
+          const isInvited = guestList.includes(name);
+           
+          if(isInvited){
+            const p = document.querySelector('p')
+            p.style.color = "green";
+            p.innerHTML = "You are invited " + name
+            const h1 = document.querySelector('h1')
+            h1.style.color = "green"
+            h1.textContent = "Welcome " + name
+          }else{
+            const p = document.querySelector('p')
+            p.style.color = "red";
+            p.innerHTML = "You are not invited " + name
+            const h1 = document.querySelector('h1')
+            h1.style.color = "red"
+            h1.textContent =  name + "," + " You are not invited"
+          }
+
+        }
+
+    </script>
+    
+    
+</body>
+</html>
