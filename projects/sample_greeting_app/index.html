@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Greeting</title>
+    <style>
+        body {
+            background-color: rgb(147, 147, 246);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        div {
+            width: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 250px;
+            border-radius: 20px;
+            border: white solid 1px;
+            text-align: center;
+            color: white;
+            padding: 40px;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Good Morning Chyke</h1>
+        <p>Let the sunshine of the day bring you good tidings 🌅</p>
+    </div>
+
+    <script>
+        const hours = new Date().getHours();
+        
+
+        const h1 = document.querySelector('h1');
+        const p = document.querySelector('p');
+        const body = document.querySelector('body');
+        const div = document.querySelector('div');
+
+        if (hours < 12) {
+            // Morning: before 12 PM
+            h1.innerHTML = "Good Morning Chyke";
+            body.style.background = "rgb(147, 147, 246)";
+            div.style.color = "white";
+            p.innerText = "Let the sunshine of the day bring you good tidings 🌅";
+        } else if (hours >= 12 && hours < 17) {
+            // Afternoon: 12 PM to 4:59 PM
+            h1.innerHTML = "Good Afternoon Mr. Chyke";
+            body.style.background = "yellow";
+            div.style.color = "black";
+            p.innerText = "Keep on glowing in God's warm arms of glory";
+        } else {
+            // Evening: 5 PM onwards
+            h1.innerHTML = "Good Evening Mr. Chyke";
+            body.style.background = "gray";
+            div.style.color = "white";
+            p.innerText = "Let the cool breeze cool off the heat of the day";
+        }
+    </script>
+</body>
+</html>
